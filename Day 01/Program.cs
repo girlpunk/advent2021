@@ -49,7 +49,7 @@ namespace Day1
                 var lineInt = int.Parse(line);
 
                 if (previousFirst != -1 && previousSecond != -1 && previousThird != -1 &&
-                    (lineInt + previousFirst + previousSecond) > (previousFirst + previousSecond + previousThird))
+                    lineInt + previousFirst + previousSecond > previousFirst + previousSecond + previousThird)
                     increasingLines++;
 
                 previousThird = previousSecond;

@@ -10,9 +10,22 @@ namespace Day_03
     {
         public static void Main()
         {
-            Console.WriteLine("Day 1");
-            Console.WriteLine($"Part 1: {PartOne().Result}");
-            Console.WriteLine($"Part 2: {PartTwo().Result}");
+            var watch = new System.Diagnostics.Stopwatch();
+
+            watch.Start();
+            var one = PartOne().Result;
+            watch.Stop();
+
+            Console.WriteLine($"Part 1: {one}");
+            Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
+
+            watch.Reset();
+            watch.Start();
+            var two = PartTwo().Result;
+            watch.Stop();
+
+            Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
+            Console.WriteLine($"Part 2: {two}");
         }
 
         private static async Task<int> PartOne()
@@ -72,11 +85,11 @@ namespace Day_03
             {
                 var bitsInPosition = oxygen.Select(l => l[oxygenPosition]).ToList();
 
-                var ones = bitsInPosition.Count(static b => b == true);
+                var ones = bitsInPosition.Count(static b => b);
                 var zeroes = bitsInPosition.Count(static b => b == false);
 
                 oxygen = ones >= zeroes
-                    ? oxygen.Where(o => o[oxygenPosition] == true).ToList()
+                    ? oxygen.Where(o => o[oxygenPosition]).ToList()
                     : oxygen.Where(o => o[oxygenPosition] == false).ToList();
 
                 oxygenPosition++;
@@ -93,12 +106,12 @@ namespace Day_03
             {
                 var bitsInPosition = scrubber.Select(l => l[scrubberPosition]).ToList();
 
-                var ones = bitsInPosition.Count(static b => b == true);
+                var ones = bitsInPosition.Count(static b => b);
                 var zeroes = bitsInPosition.Count(static b => b == false);
 
                 scrubber = ones >= zeroes
                     ? scrubber.Where(o => o[scrubberPosition] == false).ToList()
-                    : scrubber.Where(o => o[scrubberPosition] == true).ToList();
+                    : scrubber.Where(o => o[scrubberPosition]).ToList();
 
                 scrubberPosition++;
             }

@@ -9,9 +9,22 @@ namespace Day_04
     {
         public static void Main()
         {
-            Console.WriteLine("Day 1");
-            Console.WriteLine($"Part 1: {PartOne().Result}");
-            Console.WriteLine($"Part 2: {PartTwo().Result}");
+            var watch = new System.Diagnostics.Stopwatch();
+
+            watch.Start();
+            var one = PartOne().Result;
+            watch.Stop();
+
+            Console.WriteLine($"Part 1: {one}");
+            Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
+
+            watch.Reset();
+            watch.Start();
+            var two = PartTwo().Result;
+            watch.Stop();
+
+            Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
+            Console.WriteLine($"Part 2: {two}");
         }
 
         private static async Task<int> PartOne()
@@ -41,7 +54,7 @@ namespace Day_04
                         .Where(static s => !string.IsNullOrWhiteSpace(s))
                         .Select(int.Parse))
                     {
-                        grid[x, y] = new BoardPosition()
+                        grid[x, y] = new BoardPosition
                         {
                             Number = num,
                             Marked = false
@@ -116,7 +129,7 @@ namespace Day_04
                         .Where(static s => !string.IsNullOrWhiteSpace(s))
                         .Select(int.Parse))
                     {
-                        grid[x, y] = new BoardPosition()
+                        grid[x, y] = new BoardPosition
                         {
                             Number = num,
                             Marked = false

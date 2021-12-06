@@ -70,7 +70,7 @@ namespace Day_2
                 {
                     case Command.Forward:
                         position += amount;
-                        depth += (aim * amount);
+                        depth += aim * amount;
                         break;
                     case Command.Down:
                         aim += amount;
