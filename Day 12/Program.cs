@@ -55,25 +55,21 @@
                 return 1;
             }
 
-            var validPaths = paths.Where(path =>
+            var validPaths = paths.Where(path => 
                     path.start == currentCave && (char.IsUpper(path.end[0]) || !visitedCaves.Contains(path.end)))
                 .ToList();
 
             if (validPaths.Count == 0)
-                return -1;
+                return 0;
 
             var visitedCopy = visitedCaves.Select(static x => x).ToList();
 
             if (char.IsLower(currentCave[0]))
                 visitedCopy.Add(currentCave);
 
-            var futurePaths = validPaths.Select(path => RecurseRoutes(paths, path.end, visitedCopy, debugCopy))
-                .ToList();
+            var futurePaths = validPaths.Select(path => RecurseRoutes(paths, path.end, visitedCopy, debugCopy));
 
-            if (futurePaths.All(static x => x == -1))
-                return -1;
-
-            return futurePaths.Where(static x => x != -1).Sum();
+            return futurePaths.Sum();
         }
 
         private static async Task<long> PartTwo()
